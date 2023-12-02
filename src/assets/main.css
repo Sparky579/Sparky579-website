@@ -1,11 +1,12 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0rem;
 
   font-weight: normal;
+  background-color: #e0ffff;
 }
 
 a,
@@ -21,7 +22,7 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 4024px) {
   body {
     display: flex;
     place-items: center;
@@ -32,4 +33,11 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
+}
+
+@font-face {
+  font-family: 'XiYuan'; /* 自定义字体名称 */
+  src: url('../src/fonts/cangerxiyuanti.ttf') format('truetype'); /* 字体文件的相对路径和格式 */
+  font-weight: normal;
+  font-style: normal;
 }

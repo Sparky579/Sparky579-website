@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import TopBar from './components/TopBar.vue';
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import TheWelcome from './components/TheWelcome.vue'
     <TheWelcome />
     <el-button type="primary">Primary</el-button>
   </main> -->
+  <TopBar class="top"></TopBar>
   <router-view></router-view>
 </template>
 
@@ -26,12 +28,20 @@ header {
   line-height: 1.5;
 }
 
+.top {
+  position: sticky; /* 使用粘性定位 */
+  top: 0; /* 粘性元素距离顶部的距离，设置为0表示固定在最上方 */
+  width: 100%; /* 占满整行 */
+  padding: 10px 0; /* 可选的内边距，根据需要调整 */
+  z-index: 100; /* 设置z-index以确保顶栏在其他内容之上 */
+}
+
 .logo {
   display: block;
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 4024px) {
   header {
     display: flex;
     place-items: center;
