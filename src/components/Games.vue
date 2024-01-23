@@ -31,11 +31,11 @@ const games: any = ref([{
       '        点击方块：点击方块会改变它和周围方块的状态，每次点击都会改变一片区域的方块。你需要巧妙地点击方块，以达到最终目标。<br>\n' +
       '\n' +
       '        通关挑战：当所有方块都成功变成"A"时，恭喜你通关成功！挑战自己，看看你需要多少步才能完成游戏。享受这个简单的益智小游戏吧！',
-  url: '/public/sss6.html'
+  url: 'sss6.html'
 }, {
   title: '合成大马哈',
   content: '在这个游戏中，你将面对落下的各种小物体，通过巧妙地合并它们，逐步创建出更大、更强大的"大马哈"。<br>挑战自己的合成技巧，争取合成出史上最大的"大马哈"，成为合成大师！\n',
-  url: '/public/hcdmh/index.html'
+  url: 'hcdmh/index.html'
 }])
 
 const startGame = (targetPage: string) => {

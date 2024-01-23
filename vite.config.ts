@@ -22,14 +22,15 @@ export default defineConfig({
     },
   },
   server: {
-    middlewareMode: 'html',
-    middleware: (app) => {
-      app.use((req, res, next) => {
-        if (req.url.endsWith('.ts')) {
-          res.setHeader('Content-Type', 'application/javascript');
-        }
-        next();
-      });
+    proxy: {
+      '/hcdmh': {
+        target: 'http://127.0.0.1:8080',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/hcdmh/, '')
+      }
     },
+    historyApiFallback: true,  // 启用基于 HTML5 History API 的路由
   },
+
 });
