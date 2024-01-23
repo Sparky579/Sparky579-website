@@ -10,6 +10,11 @@
         <el-menu-item index="3" @click.native="$router.push('/about')">
             友链
         </el-menu-item>
+        <div class="flex-grow" />
+      <el-menu-item index="4" @click.native="$router.push('/login')">
+        登录/注册
+      </el-menu-item>
+      <el-text type="success" style="margin-left: 20px; margin-right: 20px; margin-bottom: 4px">未登录</el-text>
         <!-- <div class="flex-grow" />
       <el-menu-item index="1">Processing Center</el-menu-item> -->
         <!-- <el-sub-menu index="2">

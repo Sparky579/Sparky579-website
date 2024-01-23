@@ -1,16 +1,13 @@
-import { fileURLToPath, URL } from 'node:url'
-
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
-  // ...
   plugins: [
     vue(),
-    // ...
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
@@ -22,6 +19,17 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       'vue': 'vue/dist/vue.esm-bundler.js',
-    }
+    },
   },
-})
+  server: {
+    middlewareMode: 'html',
+    middleware: (app) => {
+      app.use((req, res, next) => {
+        if (req.url.endsWith('.ts')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+        next();
+      });
+    },
+  },
+});

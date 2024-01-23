@@ -20,7 +20,7 @@
 
 未修改版源码：https://github.com/liyupi/daxigua/releases/tag/1.0.0
 
-![秀爆朋友圈](./assets/dadaxigua.png)
+![秀爆朋友圈](assets/dadaxigua.png)
 
 ### 本地启动
 

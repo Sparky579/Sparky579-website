@@ -20,7 +20,7 @@ import TopBar from './components/TopBar.vue';
     <el-button type="primary">Primary</el-button>
   </main> -->
   <TopBar class="top"></TopBar>
-  <router-view></router-view>
+  <router-view class="content"></router-view>
 </template>
 
 <style scoped>
@@ -35,7 +35,9 @@ header {
   padding: 10px 0; /* 可选的内边距，根据需要调整 */
   z-index: 100; /* 设置z-index以确保顶栏在其他内容之上 */
 }
-
+.content {
+  height: calc(100vh - 70px);
+}
 .logo {
   display: block;
   margin: 0 auto 2rem;

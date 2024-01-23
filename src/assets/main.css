@@ -8,6 +8,11 @@
   font-weight: normal;
   background-color: #e0ffff;
 }
+html,body,#app{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
 a,
 .green {
@@ -31,13 +36,13 @@ a,
   #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    padding: 0 0rem;
   }
 }
 
 @font-face {
   font-family: 'XiYuan'; /* 自定义字体名称 */
-  src: url('../src/fonts/cangerxiyuanti.ttf') format('truetype'); /* 字体文件的相对路径和格式 */
+  src: url('../../public/cangerxiyuanti.ttf') format('truetype'); /* 字体文件的相对路径和格式 */
   font-weight: normal;
   font-style: normal;
 }

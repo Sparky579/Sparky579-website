@@ -76,7 +76,7 @@ export default {
   display: flex;
   align-items: center; /* 设置文本垂直居中 */
   justify-content: center;
-  height: 100%; /* 确保元素高度充满其容器 */
+  height: 30vh; /* 确保元素高度充满其容器 */
   min-height: 30vh;
   flex-direction: column;
 }

@@ -8,5 +8,11 @@
       "path": "./tsconfig.app.json"
     }
   ],
-  "compilerOptions": {"strict": false}
+  "compilerOptions": {
+    "target": "ES6", // or your target version
+    "module": "CommonJS",
+    "node": true, // Make sure this is set to true
+    "types": ["node"],
+    // ...
+  }
 }
