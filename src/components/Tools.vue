@@ -4,7 +4,7 @@
       <el-card class="box-card" style="margin-top: 20px;">
         <template #header>
           <div class="card-header">
-            <span style="color: green;">{{ card.title }}</span>
+            <span style="color: darkblue;">{{ card.title }}</span>
             <el-button class="button" text @click="startGame(card.url)">开始游戏</el-button>
           </div>
         </template>
@@ -27,12 +27,8 @@ const value = ref(null);
 
 const games: any = ref([{
   title: 'DeepS翻译器',
-  content: '<p>使用Deep<span style="color: red;">S</span>翻译器，<br/><span style="color: #333;">轻松将文本翻译成您喜欢的语言。</span></p>\n',
+  content: '<p>使用Deep<span style="color: red;">Sparky</span>翻译器，<br/><span style="color: #333;">轻松将文本翻译成您喜欢的语言。</span></p>\n',
   url: '/tools/translate'
-}, {
-  title: '合成大马哈',
-  content: '在这个游戏中，你将面对落下的各种小物体，通过巧妙地合并它们，逐步创建出更大、更强大的"大马哈"。<br>挑战自己的合成技巧，争取合成出史上最大的"大马哈"，成为合成大师！\n',
-  url: 'hcdmh/index.html'
 }])
 const router = useRouter();
 const startGame = (targetPage: string) => {
