@@ -32,7 +32,6 @@
                 <!-- end Rabbit -->
                 <p>The page you are looking for was moved, removed,<br />
                   renamed or might never existed.</p>
-                <button class="btn"  @click.native="$router.push('/')">Go Home</button>
                 <!--<a href="#" class="btn btn-brown">Contact Us</a>-->
               </div>
               <!-- end Info -->
