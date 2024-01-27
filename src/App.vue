@@ -2,23 +2,12 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import TopBar from './components/TopBar.vue';
+import {useSessionStore} from "@/components/Cookie.vue";
+const store = useSessionStore();
+store.generateSessionId();
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-    <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-  </header>
-
-  <main>
-    <TheWelcome />
-    <el-button type="primary">Primary</el-button>
-  </main> -->
   <TopBar class="top"></TopBar>
   <router-view class="content"></router-view>
 </template>

@@ -11,10 +11,15 @@
             友链
         </el-menu-item>
         <div class="flex-grow" />
-      <el-menu-item index="4" @click.native="$router.push('/login')">
-        登录/注册
+      <el-menu-item index="4" @click="() => {if (username !== '未登录') logout();}">
+        <template v-if="username === '未登录'">
+          <router-link to="/login">登录/注册</router-link>
+        </template>
+        <template v-else>
+          <router-link to="/">登出</router-link>
+        </template>
       </el-menu-item>
-      <el-text type="success" style="margin-left: 20px; margin-right: 20px; margin-bottom: 4px">未登录</el-text>
+      <el-text type="success" style="margin-left: 20px; margin-right: 20px; margin-bottom: 4px">{{ username }}</el-text>
         <!-- <div class="flex-grow" />
       <el-menu-item index="1">Processing Center</el-menu-item> -->
         <!-- <el-sub-menu index="2">
@@ -33,11 +38,29 @@
 </template>
   
 <script lang="ts" setup>
-import { ref } from 'vue'
+import {getCurrentInstance, onBeforeMount, onMounted, ref} from 'vue'
+import {getAccount} from "@/interacts/account";
+import {setCookie} from "@/components/Cookie.vue";
 
 const activeIndex = ref('0')
+const username = ref('未登录')
+const updateAccount = () => {
+  getAccount().then(name => username.value = name)
+}
+onBeforeMount(() => {
+  const instance = getCurrentInstance();
+  if (instance && instance.appContext.config.globalProperties.$router) {
+    instance.appContext.config.globalProperties.$router.afterEach(() => {
+      updateAccount();
+    });
+  }
+});
 const handleSelect = (key: string, keyPath: string[]) => {
     console.log(key, keyPath)
+}
+const logout = () => {
+  setCookie();
+  window.location.reload()
 }
 </script>
   

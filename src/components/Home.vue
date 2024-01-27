@@ -57,9 +57,10 @@ export default {
         this.deviceType = 'Windows 电脑';
       } else if (userAgent.match(/Mac/i)) {
         this.deviceType = 'Mac 电脑';
-      } else {
-        this.deviceType = '未知设备';
+      } else if (userAgent.match(/Linux/i)) {
+        this.deviceType = 'Linux 电脑';
       }
+      else this.deviceType = '未知'
     },
   },
 };
