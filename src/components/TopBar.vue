@@ -11,12 +11,12 @@
             友链
         </el-menu-item>
         <div class="flex-grow" />
-      <el-menu-item index="4" @click="() => {if (username !== '未登录') logout();}">
+      <el-menu-item index="4" @click="() => {if (username !== '未登录') logout(); router.push(username === '未登录' ? '/login' : '/')}">
         <template v-if="username === '未登录'">
-          <router-link to="/login">登录/注册</router-link>
+          登录/注册
         </template>
         <template v-else>
-          <router-link to="/">登出</router-link>
+          登出
         </template>
       </el-menu-item>
       <el-text type="success" style="margin-left: 20px; margin-right: 20px; margin-bottom: 4px">{{ username }}</el-text>
@@ -41,6 +41,7 @@
 import {getCurrentInstance, onBeforeMount, onMounted, ref} from 'vue'
 import {getAccount} from "@/interacts/account";
 import {setCookie} from "@/components/Cookie.vue";
+import router from "../../router";
 
 const activeIndex = ref('0')
 const username = ref('未登录')

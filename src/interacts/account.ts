@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {getSessionId} from "@/components/Cookie.vue";
+import {getCookie, getSessionId} from "@/components/Cookie.vue";
 
 export async function postLogin(userName: string, password: string) {
     try {
@@ -26,14 +26,40 @@ export async function postLogin(userName: string, password: string) {
     }
 }
 
-export async function postRegister(userName: string, password: string, invitationCode: string) {
+export async function postRegister(userName: string, password: string, mail: string, code: string) {
     try {
         const data = {
             username: userName,
             password: password,
-            code: invitationCode
+            mail: mail,
+            code: code,
+            cookie: getCookie()
         };
+        console.log(data)
         const url =`${import.meta.env.VITE_APP_FLASK_URL}/register`;
+        const res = await axios.post(url, data)
+        if (res.status === 200 || res.status === 201) {
+            console.log('register ok');
+            return "ok";
+        }
+        else {
+            console.log(res.data)
+            console.error('register error');
+            return "error1";
+        }
+    } catch (error) {
+        console.error('register error', error);
+        return error.response.data.message;
+    }
+}
+
+export async function postSendCode(mail: string){
+    try {
+        const data = {
+            cookie: getCookie(),
+            mail: mail
+        }
+        const url =`${import.meta.env.VITE_APP_FLASK_URL}/send_mail`;
         const res = await axios.post(url, data)
         if (res.status === 200 || res.status === 201) {
             console.log('register ok');

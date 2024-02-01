@@ -8,7 +8,11 @@
         <el-input v-model="username" placeholder="请输入账号"></el-input>
         <el-input v-model="password" placeholder="请输入密码" type="password"></el-input>
         <el-input v-model="password2" placeholder="请确认密码" type="password"></el-input>
-        <el-input v-model="code" placeholder="请输入邮箱"></el-input>
+        <el-input v-model="mail" placeholder="请输入邮箱" class="mail-input"></el-input>
+        <div class="mail-code-row">
+          <el-input v-model="code" placeholder="请输入验证码" class="mail-input"></el-input>
+          <el-button type="primary" @click="sendCode" :disabled="!enableSend">{{ enableSend ? "发送" : countdown + "秒" }}</el-button>
+        </div>
         <el-button type="primary" @click="submitForm">注册</el-button>
       </div>
       <router-link class="bottom-left-text" to="/login">登录</router-link>
@@ -31,7 +35,7 @@
 
 <script setup lang="ts">
 import {Ref, ref} from 'vue';
-import {postLogin, postRegister} from "@/interacts/account";
+import {postLogin, postRegister, postSendCode} from "@/interacts/account";
 import {getSessionId, useSessionStore} from "@/components/Cookie.vue";
 import {useRouter} from "vue-router";
 import {postCookies} from "@/interacts/cookies";
@@ -39,16 +43,39 @@ import {postCookies} from "@/interacts/cookies";
 const username = ref('');
 const password = ref('');
 const password2: Ref<string> = ref('');
+const mail = ref('');
 const code = ref('');
 const alert_des = ref('more text description')
 const alert_show = ref(false)
 const router = useRouter();
+const enableSend = ref(true)
+const countdown = ref(60)
 
 const setAlert = (description: string) => {
   console.log("alert")
   alert_show.value = true;
   alert_des.value = description;
 }
+let countdownTimer = null
+const startCountdown = () => {
+  if (countdownTimer) {
+    // 如果已经有一个定时器在运行，则直接返回
+    return;
+  }
+
+  enableSend.value = false;
+  countdown.value = 60;
+
+  countdownTimer = setInterval(() => {
+    countdown.value--;
+
+    if (countdown.value === 0) {
+      clearInterval(countdownTimer);
+      countdownTimer = null; // 清除定时器引用
+      enableSend.value = true;
+    }
+  }, 1000);
+};
 
 const submitForm = async () => {
   // 在这里执行提交操作
@@ -60,7 +87,7 @@ const submitForm = async () => {
     setAlert("密码长度需要至少为6！");
     return;
   }
-  const value = await postRegister(username.value, password.value, code.value);
+  const value = await postRegister(username.value, password.value, mail.value, code.value);
   if (value !== "ok") setAlert(value);
   else {
     await postCookies(username.value, password.value)
@@ -68,6 +95,22 @@ const submitForm = async () => {
   }
   // 在这里可以执行提交逻辑，例如发送数据到服务器
 };
+
+const sendCode = () => {
+  if (!(mail.value.includes("@") && mail.value.includes("."))) {
+    setAlert("邮箱格式不正确！");
+    return;
+  }
+  postSendCode(mail.value).then(x => {
+        if (x === "ok") {
+
+        } else {
+          setAlert("发送失败，请检查你的邮箱是否正确！");
+        }
+        startCountdown();
+      }
+  )
+}
 </script>
 
 
@@ -89,6 +132,16 @@ const submitForm = async () => {
   left: 4%;
   z-index: 9999;
 }
+.mail-code-row {
+  display: flex;
+  align-items: center; /* 确保元素垂直居中 */
+}
+
+.mail-input {
+  flex-grow: 1; /* 使邮箱输入框占据多余空间 */
+  margin-right: 10px; /* 在按钮前添加一些间距 */
+}
+
 .login-card {
   width: 320px; /* 设置卡片的宽度 */
   padding: 20px; /* 设置内边距 */
