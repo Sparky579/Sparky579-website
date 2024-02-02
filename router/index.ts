@@ -7,6 +7,7 @@ import Login from "@/components/Login.vue";
 import Register from "@/components/Register.vue";
 import Tools from "@/components/Tools.vue";
 import Translate from "@/components/tools/Translate.vue";
+import Board from "@/components/tools/Board.vue";
 
 const routes = [
     {path: '/', component: Home},
@@ -16,6 +17,7 @@ const routes = [
     {path: '/register', component: Register},
     {path: '/work', component: Tools},
     {path: '/tools/translate', component: Translate},
+    {path: '/tools/message', component: Board},
     {path: '/:pathMatch(.*)', component: NotFound}
 ]
 const router = createRouter(

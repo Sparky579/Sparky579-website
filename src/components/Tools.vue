@@ -5,7 +5,7 @@
         <template #header>
           <div class="card-header">
             <span style="color: darkblue;">{{ card.title }}</span>
-            <el-button class="button" text @click="startGame(card.url)">开始游戏</el-button>
+            <el-button class="button" text @click="startGame(card.url)">进入</el-button>
           </div>
         </template>
         <div class="game-content" v-html="card.content">
@@ -29,6 +29,10 @@ const games: any = ref([{
   title: 'DeepS翻译器',
   content: '<p>使用Deep<span style="color: red;">Sparky</span>翻译器，<br/><span style="color: #333;">轻松将文本翻译成您喜欢的语言。</span></p>\n',
   url: '/tools/translate'
+},{
+  title: '留言板',
+  content: '<p>在留言板上发表自己的评论</p>',
+  url: '/tools/message'
 }])
 const router = useRouter();
 const startGame = (targetPage: string) => {
