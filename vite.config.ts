@@ -4,9 +4,11 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { fileURLToPath, URL } from 'node:url';
+import commonjs from "@rollup/plugin-commonjs";
 
 export default defineConfig({
   plugins: [
+    commonjs() as any,
     vue(),
     AutoImport({
       resolvers: [ElementPlusResolver()],

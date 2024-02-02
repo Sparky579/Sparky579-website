@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import {Ref, ref} from 'vue';
+import {ref} from 'vue';
 import {postLogin, postRegister, postSendCode} from "@/interacts/account";
 import {getSessionId, useSessionStore} from "@/components/Cookie.vue";
 import {useRouter} from "vue-router";
@@ -42,7 +42,7 @@ import {postCookies} from "@/interacts/cookies";
 
 const username = ref('');
 const password = ref('');
-const password2: Ref<string> = ref('');
+const password2: any = ref('');
 const mail = ref('');
 const code = ref('');
 const alert_des = ref('more text description')
@@ -56,7 +56,7 @@ const setAlert = (description: string) => {
   alert_show.value = true;
   alert_des.value = description;
 }
-let countdownTimer = null
+let countdownTimer: any = null
 const startCountdown = () => {
   if (countdownTimer) {
     // 如果已经有一个定时器在运行，则直接返回

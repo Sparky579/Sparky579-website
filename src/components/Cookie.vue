@@ -2,6 +2,10 @@
 import { createPinia , defineStore } from "pinia";
 
 const pinia = createPinia();
+export default {
+  name: 'Cookie',
+  // 其他组件选项...
+}
 const useSessionStore = defineStore('session', {
   state: () => ({
     sessionId: ''

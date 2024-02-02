@@ -12,6 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
     "@vue/cli-plugin-typescript": "^5.0.8",
     "axios": "^1.6.5",
     "element-plus": "^2.4.3",

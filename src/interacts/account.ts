@@ -18,7 +18,7 @@ export async function postLogin(userName: string, password: string) {
             return "Unknown Error"
         }
     }
-    catch (error) {
+    catch (error: any) {
         console.error('login error', error)
         if (error.toString().match(/401/i))
             return 'Wrong username or password!'
@@ -47,7 +47,7 @@ export async function postRegister(userName: string, password: string, mail: str
             console.error('register error');
             return "error1";
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('register error', error);
         return error.response.data.message;
     }
@@ -70,7 +70,7 @@ export async function postSendCode(mail: string){
             console.error('register error');
             return "error1";
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('register error', error);
         return error.response.data.message;
     }
@@ -90,7 +90,7 @@ export async function getAccount() {
         else {
             return "未登录";
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('register error', error);
         return "未登录";
     }
