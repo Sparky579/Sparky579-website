@@ -2,19 +2,15 @@ import axios from "axios";
 import type {Ref} from "vue";
 
 
-export function fetchTranslate (content: string, src_lang: string, dst_lang: string, outputRef: Ref<any>, fix = null, easy=null) {
+export function fetchChat (content: string, outputRef: Ref<any>) {
     outputRef.value = "";
-    fetch(`${import.meta.env.VITE_APP_FLASK_URL}/translate`, {
+    fetch(`${import.meta.env.VITE_APP_FLASK_URL}/chat`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            content: content,
-            src_lang: src_lang,
-            dst_lang: dst_lang,
-            fix: fix,
-            easy: easy
+            content: content
         })
     })
         .then(response => {
